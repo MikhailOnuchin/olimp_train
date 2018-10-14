@@ -1,4 +1,4 @@
-# olimp_train
+# olymp_train
 
 This is a repository with olympic tasks solutions.
 
