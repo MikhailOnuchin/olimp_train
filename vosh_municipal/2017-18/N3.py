@@ -11,15 +11,8 @@ if timea > timec:
 delta = (timec-timea)/2
 timeb += delta
 timeb %= 86400
-hours = str(int(timeb//3600 + 0.5))
+hours = int(timeb//3600 + 0.5)
 timeb %= 3600
-mins = str(int(timeb//60 + 0.5))
-secs = str(int(timeb%60 +0.5))
-if len(hours) == 1:
-    hours = '0' + hours
-if len(mins) == 1:
-    mins = '0' + mins
-if len(secs) == 1:
-    secs = '0' + secs
-print(hours, ':', mins, ':', secs, sep=''
-                                       '')
+mins = int(timeb//60 + 0.5)
+secs = int(timeb%60 +0.5)
+print('%02d:%02d:%02d' % (hours, mins, secs))
