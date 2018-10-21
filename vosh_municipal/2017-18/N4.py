@@ -17,6 +17,8 @@ def elevator(building, el_cap):
             el_free = el_cap
             time += 2*el_pos*(people//el_cap)
             el_free -= people % el_cap
+    if el_free != el_cap:
+        time += 2*el_pos
     return time
 
 
@@ -25,6 +27,10 @@ def test1():
 
 
 def test2():
+    assert elevator([3,0,2], 2) == 14
+
+
+def test_large():
     building = []
     for i in range(100000):
         building.append(1000000000)
