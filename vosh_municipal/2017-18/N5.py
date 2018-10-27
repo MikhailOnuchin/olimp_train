@@ -4,6 +4,7 @@ def plusone(ticket):
     for i in range(len(ticket) - 1, -1, -1):
         if ticket[i] < 9:
             ticket[i] += 1
+            ticket[i+1:] = [0] * (len(ticket) - 1 - i)
             break
     return ticket
 
@@ -59,7 +60,7 @@ def lucky(ticket):
         if ticket_right is None:
             ticket_left = plusone(ticket_left)
             ticket_right = [0] * len(ticket_left)
-            left_sum += 1
+            left_sum  = sum(ticket_left)
         ticket_right = increase_to_sum(ticket_right, left_sum)
     ticket_left += ticket_right
     ticket = ''
@@ -77,6 +78,7 @@ def test():
     assert lucky('333433') == '333441'
     assert lucky('0001') == '0101'
     assert lucky('1010') == '1102'
+    assert lucky('989998') == '990099'
 
 
 def main():
