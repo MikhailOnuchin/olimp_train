@@ -25,7 +25,7 @@ def alg(n):
         if c != 0:
             d = c - 1
             c = 1
-            if a > c:
+            if a > c or (a == c and b > d):
                 a, b, c, d = c, d, a, b
     elif len(n) == 2:
         first = int(n[0])
@@ -51,6 +51,7 @@ def test():
     assert alg('189') == 1899
     assert alg('1735') == 0
     assert alg('1713') == 4989
+    assert alg('101') == 1019
 
 
 def main():
