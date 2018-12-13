@@ -30,6 +30,8 @@ def alg(n):
     elif len(n) == 2:
         first = int(n[0])
         last = int(n[1])
+        if first < last:
+            return 0
         a = 1
         b = first - 1
         c = last
@@ -42,10 +44,19 @@ def alg(n):
     return int(str(a) + str(b) + str(c) + str(d))
 
 
+def test():
+    assert alg('1311') == 2949
+    assert alg('89') == 0
+    assert alg('157') == 1669
+    assert alg('189') == 1899
+    assert alg('1735') == 0
+    assert alg('1713') == 4989
+
+
 def main():
     n = input()
     k = alg(n)
     print(k)
 
 
-main()
+test()
