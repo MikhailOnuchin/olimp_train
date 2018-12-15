@@ -1,3 +1,4 @@
+import os
 
 
 def alg(n):
@@ -11,7 +12,7 @@ def alg(n):
                 first, last = last, first
             a = first - 9
             b = 9
-            c = last -9
+            c = last - 9
             d = 9
     elif len(n) == 3:
         first = int(n[:2])
@@ -20,10 +21,10 @@ def alg(n):
             return 0
         a = first - 9
         b = 9
-        c = last
+        c = 0
         d = 0
-        if c != 0:
-            d = c - 1
+        if last != 0:
+            d = last - 1
             c = 1
             if a > c or (a == c and b > d):
                 a, b, c, d = c, d, a, b
@@ -33,14 +34,15 @@ def alg(n):
         if first < last:
             return 0
         a = 1
-        b = first - 1
-        c = last
+        b = 0
+        c = 0
         d = 0
         if last != 0:
-            c = 1
-            d = last - 1
-            if b > d:
-                b, d = d, b
+            b = last -1
+            d = first
+        else:
+            b = first - 1
+            d = last
     return int(str(a) + str(b) + str(c) + str(d))
 
 
@@ -54,10 +56,22 @@ def test():
     assert alg('101') == 1019
 
 
+def auto_test():
+    rel_dir = 'test-data/3/tests'
+    for fn in os.listdir(rel_dir):
+        if fn.endswith(".a"):
+            test_params = list(map(int, open(rel_dir + '/' + fn[:-2], 'r').readlines()))
+            expected = list(map(int, open(rel_dir + '/' + fn, 'r').read().split()))
+            ans = alg(str(test_params[0]))
+            if ans != expected[0]:
+                print('%s: %s not equal to %s' % (fn, str(expected[0]), ans))
+
+
+
 def main():
     n = input()
     k = alg(n)
     print(k)
 
 
-test()
+auto_test()
